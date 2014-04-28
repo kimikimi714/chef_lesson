@@ -1,3 +1,5 @@
-cookbooks/
+cookbooks
+vendor
+.bundle
 .chef
 nodes
