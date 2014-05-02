@@ -82,3 +82,4 @@ template "iptables" do
   mode 0600
   notifies :restart, 'service[iptables]'
 end
+
