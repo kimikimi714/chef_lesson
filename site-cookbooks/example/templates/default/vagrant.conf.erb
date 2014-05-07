@@ -1,1 +1,1 @@
-Alias /<%= node['users']['vagrant'] %>/ /home/<%= node['users']['vagrant'] %>/public_html/
+Alias /<%= node[:etc][:passwd][:vagrant][:gecos] %>/ <%= node[:etc][:passwd][:vagrant][:dir] %>/public_html/

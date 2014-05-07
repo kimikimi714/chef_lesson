@@ -25,9 +25,25 @@ template "httpd.conf" do
   notifies :restart, 'service[httpd]'
 end
 
+directory "/home/vagrant/public_html" do
+  owner "vagrant"
+  group "vagrant"
+  mode 00755
+  action :create
+  only_if {File.exists?(node[:etc][:passwd][:vagrant][:dir])}
+end
+
 template "vagrant.conf" do
   path "/etc/httpd/conf.d/vagrant.conf"
   source "vagrant.conf.erb"
   mode 0644
   notifies :restart, 'service[httpd]'
+  only_if {File.exists?(node[:etc][:passwd][:vagrant][:dir] + '/public_html')}
+end
+
+template "index.html" do
+  path node[:etc][:passwd][:vagrant][:dir] + "/public_html/index.html"
+  source "index.html.erb"
+  mode 0644
+  only_if {File.exists?(node[:etc][:passwd][:vagrant][:dir] + '/public_html')}
 end

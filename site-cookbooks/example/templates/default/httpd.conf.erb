@@ -239,8 +239,8 @@ Include conf.d/*.conf
 #  when the value of (unsigned)Group is above 60000;
 #  don't use Group #-1 on these systems!
 #
-User <%= node['users']['vagrant'] %>
-Group <%= node['groups']['vagrant'] %>
+User <%= node[:etc][:passwd][:vagrant][:gecos] %>
+Group <%= node[:etc][:passwd][:vagrant][:gecos] %>
 
 ### Section 2: 'Main' server configuration
 #
@@ -259,7 +259,7 @@ Group <%= node['groups']['vagrant'] %>
 # e-mailed.  This address appears on some server-generated pages, such
 # as error documents.  e.g. admin@your-domain.com
 #
-ServerAdmin <%= node['users']['vagrant'] %>@localhost
+ServerAdmin <%= node[:etc][:passwd][:vagrant][:gecos] %>@localhost
 
 #
 # ServerName gives the name and port that the server uses to identify itself.
@@ -364,7 +364,7 @@ DocumentRoot "/var/www/html"
     # permissions).
     #
     UserDir disabled root
-    UserDir enabled <%= node['users']['vagrant'] %>
+    UserDir enabled <%= node[:etc][:passwd][:vagrant][:gecos] %>
 
     #
     # To enable requests to /~user/ to serve the user's public_html
