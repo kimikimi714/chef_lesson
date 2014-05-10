@@ -5,7 +5,7 @@ This file is used to list changes made in each version of the example cookbook.
 
 0.1.0
 -----
-- [your_name] - Initial release of example
+- [kimikimi714] - Initial release of example
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
