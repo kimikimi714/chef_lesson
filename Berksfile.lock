@@ -1,5 +1,7 @@
 DEPENDENCIES
+  apt
   yum
 
 GRAPH
+  apt (2.3.10)
   yum (3.2.0)
