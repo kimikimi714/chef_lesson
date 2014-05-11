@@ -7,6 +7,28 @@
 # All rights reserved - Do Not Redistribute
 #
 
+##################################################################
+### clock settings
+##################################################################
+template "clock" do
+  path "/etc/timezone"
+  source "timezone.erb"
+  owner "root"
+  group "root"
+  mode 0644
+  notifies :run, 'bash[clock_settings]'
+  only_if {File.exists?("/usr/share/zoneinfo/Asia/Tokyo")}
+end
+
+bash "clock_settings" do
+  user "root"
+  code <<-EOH
+    dpkg-reconfigure --frontend noninteractive tzdata
+  EOH
+  only_if {File.exists?("/etc/timezone")}
+end
+
+# docker install
 package "docker.io" do
     action :install
 end
