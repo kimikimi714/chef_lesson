@@ -10,6 +10,8 @@
 %w{
   mysql-server
   memcached
+  sqlite
+  sqlite-devel
 }.each do |p|
   package p do
     action :install
