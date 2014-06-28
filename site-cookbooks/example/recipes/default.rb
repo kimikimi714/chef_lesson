@@ -57,7 +57,7 @@ end
 ### common components
 ##################################################################
 %w{
-  git-core
+  svn
   vim-enhanced
 }.each do |p|
   package p do
