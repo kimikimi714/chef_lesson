@@ -44,6 +44,7 @@ end
 %w{
   svn
   vim-enhanced
+  iptables-services
 }.each do |p|
   package p do
     action :install
@@ -51,6 +52,11 @@ end
 end
 
 # iptables
+service "firewalld" do
+  supports :status => false, :restart => false, :reload => false
+  action [:disable, :stop]
+end
+
 service "iptables" do
   only_if {
     File.exists? "/etc/sysconfig/iptables"
@@ -58,13 +64,3 @@ service "iptables" do
   supports :status => true, :restart => true, :reload => true
   action [:enable, :start]
 end
-
-template "iptables" do
-  path "/etc/sysconfig/iptables"
-  source "iptables.erb"
-  owner "root"
-  group "root"
-  mode 0600
-  notifies :restart, 'service[iptables]'
-end
-
