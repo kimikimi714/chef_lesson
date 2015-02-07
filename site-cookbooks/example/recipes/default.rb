@@ -10,24 +10,17 @@
 ##################################################################
 ### clock settings
 ##################################################################
-template "clock" do
-  path "/etc/sysconfig/clock"
-  source "clock.erb"
-  owner "root"
-  group "root"
-  mode 0644
-  notifies :run, 'bash[clock_settings]'
+log("tz-info(before): #{Time.now.strftime("%z %Z")}")
+
+service 'crond'
+
+link '/etc/localtime' do
+  to "/usr/share/zoneinfo/Asia/Tokyo"
+  notifies :restart, 'service[crond]', :immediately
   only_if {File.exists?("/usr/share/zoneinfo/Asia/Tokyo")}
 end
 
-bash "clock_settings" do
-  user "root"
-  code <<-EOH
-    source /etc/sysconfig/clock
-    cp -p /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
-  EOH
-  only_if {File.exists?("/usr/share/zoneinfo/Asia/Tokyo")}
-end
+log("tz-info(after): #{Time.now.strftime("%z %Z")}")
 
 ##################################################################
 ### repository settings
