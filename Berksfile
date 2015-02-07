@@ -2,6 +2,8 @@
 
 source 'https://api.berkshelf.com'
 
-cookbook 'yum'
 cookbook 'apt'
+cookbook 'cron'
+cookbook 'ntp'
 cookbook 'rbenv'
+cookbook 'yum'
