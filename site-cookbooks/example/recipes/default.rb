@@ -21,9 +21,9 @@ log("tz-info(before): #{Time.now.strftime("%z %Z")}")
 service 'crond'
 
 link '/etc/localtime' do
-  to "/usr/share/zoneinfo/Asia/Tokyo"
+  to '/usr/share/zoneinfo/Asia/Tokyo'
   notifies :restart, 'service[crond]', :immediately
-  only_if {File.exists?("/usr/share/zoneinfo/Asia/Tokyo")}
+  only_if {File.exists?('/usr/share/zoneinfo/Asia/Tokyo')}
 end
 
 log("tz-info(after): #{Time.now.strftime("%z %Z")}")
@@ -31,7 +31,7 @@ log("tz-info(after): #{Time.now.strftime("%z %Z")}")
 ##################################################################
 ### repository settings
 ##################################################################
-package "yum" do
+package 'yum' do
   action :upgrade
 end
 
@@ -58,14 +58,14 @@ end
 end
 
 # iptables
-service "firewalld" do
+service 'firewalld' do
   supports :status => false, :restart => false, :reload => false
   action [:disable, :stop]
 end
 
-service "iptables" do
+service 'iptables' do
   only_if {
-    File.exists? "/etc/sysconfig/iptables"
+    File.exists? '/etc/sysconfig/iptables'
   }
   supports :status => true, :restart => true, :reload => true
   action [:enable, :start]
