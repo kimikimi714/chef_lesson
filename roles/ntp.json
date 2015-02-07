@@ -1,0 +1,13 @@
+{
+  "json_class": "Chef::Role",
+  "name": "ntp",
+  "description": "ntp basic",
+  "default_attributes": {
+    "ntp": {
+      "servers": ["ntp.nict.jp", "ntp.jst.mfeed.ad.jp"]
+    }
+  },
+  "run_list": [
+    "recipe[ntp]"
+  ]
+}
