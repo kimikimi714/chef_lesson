@@ -5,7 +5,8 @@ example Cookbook
 Requirements
 ------------
 #### packages
-- `yum` - [opscode提供のyumレシピ](http://community.opscode.com/cookbooks/yum)
+- [cron](https://supermarket.chef.io/cookbooks/cron)
+- [ntp](https://supermarket.chef.io/cookbooks/ntp)
 
 Attributes
 ----------
